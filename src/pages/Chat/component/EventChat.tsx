@@ -1,5 +1,5 @@
-import {StyleSheet, Text, View, Image} from 'react-native';
-import React from 'react';
+import {StyleSheet, Text, View, Image, TouchableOpacity} from 'react-native';
+import React, {useState} from 'react';
 
 type eventChat = {
   photo: string;
@@ -7,6 +7,7 @@ type eventChat = {
   last_message: string;
   time_send_message: string;
   unread_message?: string;
+  key_id: number;
 };
 const EventChat = ({
   photo,
@@ -14,19 +15,28 @@ const EventChat = ({
   last_message,
   time_send_message,
   unread_message,
+  key_id,
 }: eventChat) => {
+  const [id] = useState(key_id);
+
+  function ClickEvent() {
+    console.log(id);
+  }
+
   return (
-    <View style={styles.container}>
-      <Image style={styles.photo} source={{uri: photo}} />
-      <View style={styles.message_section}>
-        <Text style={styles.name}>{name}</Text>
-        <Text style={styles.message}>{last_message}</Text>
+    <TouchableOpacity onPress={ClickEvent}>
+      <View style={styles.container}>
+        <Image style={styles.photo} source={{uri: photo}} />
+        <View style={styles.message_section}>
+          <Text style={styles.name}>{name}</Text>
+          <Text style={styles.message}>{last_message}</Text>
+        </View>
+        <View style={styles.time_section}>
+          <Text style={styles.time}>{time_send_message}</Text>
+          <Text style={styles.unread_message}>{unread_message}</Text>
+        </View>
       </View>
-      <View style={styles.time_section}>
-        <Text style={styles.time}>{time_send_message}</Text>
-        <Text style={styles.unread_message}>{unread_message}</Text>
-      </View>
-    </View>
+    </TouchableOpacity>
   );
 };
 

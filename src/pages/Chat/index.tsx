@@ -132,6 +132,7 @@ export default function ChatScreem() {
   AsyncStorage.getItem('user_id').then(value => {
     console.log(value);
   });
+  let id = 0;
 
   return (
     <>
@@ -139,8 +140,11 @@ export default function ChatScreem() {
       <ScrollView>
         <View style={style.container}>
           {data.map(payload => {
+            id++;
             return (
               <EventChat
+                key={id}
+                key_id={id}
                 name={payload.name}
                 last_message={payload.last_message}
                 time_send_message={payload.time_send_message}
