@@ -8,20 +8,18 @@ type modal = {
 };
 const ModalLogin = ({message, modalVisible, setClose}: modal) => {
   return (
-    <View style={styles.centeredView}>
-      <Modal animationType="none" transparent={true} visible={modalVisible}>
-        <View style={styles.centeredView}>
-          <View style={styles.modalView}>
-            <Text style={styles.modalText}>{message}</Text>
-            <Pressable
-              style={[styles.button, styles.buttonClose]}
-              onPress={setClose}>
-              <Text style={styles.textStyle}>Close</Text>
-            </Pressable>
-          </View>
+    <Modal animationType="none" transparent={true} visible={modalVisible}>
+      <View style={styles.centeredView}>
+        <View style={styles.modalView}>
+          <Text style={styles.modalText}>{message}</Text>
+          <Pressable
+            style={[styles.button, styles.buttonClose]}
+            onPress={setClose}>
+            <Text style={styles.textStyle}>Close</Text>
+          </Pressable>
         </View>
-      </Modal>
-    </View>
+      </View>
+    </Modal>
   );
 };
 
@@ -30,7 +28,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: 'gray',
+    // backgroundColor: 'gray',
     opacity: 20,
   },
   modalView: {

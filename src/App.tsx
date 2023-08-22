@@ -10,7 +10,7 @@
 import React from 'react';
 
 import LoginScreen from './pages/Login';
-import DashboardScreen from './pages/Dashboard';
+import ChatScreen from './pages/Chat';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
@@ -26,7 +26,7 @@ function App(): JSX.Element {
       <NavigationContainer>
         <Stack.Navigator initialRouteName="Login">
           <Stack.Screen name="Login" component={LoginScreen} />
-          <Stack.Screen name="Dashboard" component={DashboardScreen} />
+          <Stack.Screen name="Chat" component={ChatScreen} />
         </Stack.Navigator>
       </NavigationContainer>
     </UrlContext.Provider>
