@@ -8,6 +8,8 @@ type eventChat = {
   time_send_message: string;
   unread_message?: string;
   key_id: number;
+  setId: Function;
+  openModal: Function;
 };
 const EventChat = ({
   photo,
@@ -16,11 +18,15 @@ const EventChat = ({
   time_send_message,
   unread_message,
   key_id,
+  setId,
+  openModal,
 }: eventChat) => {
   const [id] = useState(key_id);
 
   function ClickEvent() {
     console.log(id);
+    setId(id);
+    openModal();
   }
 
   return (

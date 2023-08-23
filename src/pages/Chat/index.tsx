@@ -1,9 +1,10 @@
 import {View, StyleSheet, ScrollView} from 'react-native';
-import React from 'react';
+import React, {useState} from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import ButtonChat from './component/ButtonChat';
 import Header from './component/Header';
 import EventChat from './component/EventChat';
+import ModalChat from './component/ModalChat';
 
 const data = [
   {
@@ -129,6 +130,19 @@ const data = [
 ];
 
 export default function ChatScreem() {
+  const [statusModal, setStatusModal] = useState<boolean>(false);
+  const [idEvent, setIdEvent] = useState<number>(0);
+
+  function closeModal() {
+    setStatusModal(false);
+  }
+  function openModal() {
+    setStatusModal(true);
+  }
+
+  function setId(id: number) {
+    setIdEvent(id);
+  }
   AsyncStorage.getItem('user_id').then(value => {
     console.log(value);
   });
@@ -136,26 +150,36 @@ export default function ChatScreem() {
 
   return (
     <>
-      <Header />
-      <ScrollView>
-        <View style={style.container}>
-          {data.map(payload => {
-            id++;
-            return (
-              <EventChat
-                key={id}
-                key_id={id}
-                name={payload.name}
-                last_message={payload.last_message}
-                time_send_message={payload.time_send_message}
-                unread_message={payload.unread_message}
-                photo={payload.photo}
-              />
-            );
-          })}
-        </View>
-      </ScrollView>
-      <ButtonChat />
+      <View>
+        <Header />
+        <ScrollView>
+          <View style={style.container}>
+            {data.map(payload => {
+              id++;
+              return (
+                <EventChat
+                  key={id}
+                  key_id={id}
+                  name={payload.name}
+                  last_message={payload.last_message}
+                  time_send_message={payload.time_send_message}
+                  unread_message={payload.unread_message}
+                  photo={payload.photo}
+                  setId={setId}
+                  openModal={openModal}
+                />
+              );
+            })}
+          </View>
+        </ScrollView>
+        <ButtonChat />
+      </View>
+
+      <ModalChat
+        modalVisible={statusModal}
+        setClose={closeModal}
+        id={idEvent}
+      />
     </>
   );
 }

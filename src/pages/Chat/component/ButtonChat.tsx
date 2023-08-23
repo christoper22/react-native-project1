@@ -19,7 +19,7 @@ const styles = StyleSheet.create({
     width: 50,
     position: 'absolute',
     right: 20,
-    bottom: 30,
+    bottom: 50,
   },
   stretch: {
     width: 50,
